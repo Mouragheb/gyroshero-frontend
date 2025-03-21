@@ -1,0 +1,121 @@
+.about-container {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fffefe;
+}
+
+/* Background Header */
+.about-header {
+  background-image: url('/public/images/hero-bg.jpg'); /* Ensure correct path */
+  background-size: cover;
+  background-position: center;
+  color: rgb(0, 0, 0);
+  padding: 80px 20px;
+  font-size: 24px;
+}
+
+
+.about-header h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.about-header p {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Main About Section */
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+  gap: 20px; /* Adds space between elements */
+}
+
+/* Text Section */
+.about-text {
+  flex: 1;
+  max-width: 600px;
+  padding: 20px;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 36px;
+  color: #cc0000;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Image Section */
+.about-image {
+  flex: 1;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mission Section */
+.about-mission {
+  margin-top: 50px;
+  padding: 40px;
+  background-color: white;
+  border-top: 3px solid #cc0000;
+}
+
+.about-mission h2 {
+  font-size: 36px;
+  color: #cc0000;
+}
+
+.about-mission p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* 🌍 Responsive Styling */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-image {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .about-image img {
+    max-width: 80%; /* Keeps image from taking full width on small screens */
+    margin: 0 auto;
+  }
+
+  .about-header {
+    padding: 50px 20px;
+    font-size: 20px;
+  }
+
+  .about-header h1 {
+    font-size: 36px;
+  }
+
+  .about-header p {
+    font-size: 18px;
+  }
+}
