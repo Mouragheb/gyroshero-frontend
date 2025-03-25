@@ -9,24 +9,48 @@ const Contact = () => {
         message: ""
     });
 
+    const [status, setStatus] = useState(null);
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        window.location.href = `mailto:mragheb@gyroshero.com?subject=Catering Inquiry&body=
-            Name: ${formData.name}%0D%0A
-            Email: ${formData.email}%0D%0A
-            Phone: ${formData.phone}%0D%0A
-            Message: ${formData.message}`;
+
+        try {
+            const response = await fetch("https://gyroshero-backend.onrender.com/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setStatus("Message sent successfully!");
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    message: ""
+                });
+            } else {
+                setStatus(result.error || "Something went wrong.");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            setStatus("An error occurred. Please try again later.");
+        }
     };
 
     return (
         <div className="contact-container">
             <img src="/images/gyroshero-logo.png" alt="Gyros Hero Logo" className="hero-logo" />
             <h1>Contact Us</h1>
-            
+
             <div className="contact-info">
                 <p><strong>Address:</strong> 8730 Westheimer Rd, Houston, Texas 77063</p>
                 <p><strong>Phone:</strong> <a href="tel:+13465657012">(346) 565-7012</a></p>
@@ -50,6 +74,8 @@ const Contact = () => {
                 <textarea name="message" placeholder="Your Inquiry" value={formData.message} onChange={handleChange} required />
                 <button type="submit">Send Inquiry</button>
             </form>
+
+            {status && <p className="form-status">{status}</p>}
         </div>
     );
 };
