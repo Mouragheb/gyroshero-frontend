@@ -1,6 +1,6 @@
 .hero-section {
   position: relative;
-  width: 100%;
+  width: 95%;
   height: 400px;
   background-image: url("/public/images/hero-bg.jpg");
   background-size: cover;
