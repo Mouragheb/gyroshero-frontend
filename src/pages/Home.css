@@ -1,3 +1,4 @@
+/*
 .hero-section {
   position: relative;
   width: 95%;
@@ -15,12 +16,12 @@
   z-index: 1;
 }
 
-/* Hero Logo */
+/* Hero Logo *
 .hero-logo {
   width: 150px;
 }
 
-/* Responsive for Mobile */
+/* Responsive for Mobile *
 @media screen and (max-width: 768px) {
   .hero-section {
       height: 300px;
@@ -31,10 +32,10 @@
       width: 100px;
   }
 }
-/* View Menu Button */
+/* View Menu Button *
 .hero-section .btn {
   display: inline-block;
-  background-color: #cc0000; /* Red color */
+  background-color: #cc0000; /* Red color *
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -49,15 +50,15 @@
 }
 
 .hero-section .btn:hover {
-  background-color: #a84949; /* Darker red on hover */
-  transform: scale(1.05); /* Slight increase in size */
+  background-color: #a84949; /* Darker red on hover *
+  transform: scale(1.05); /* Slight increase in size *
 }
 
 .hero-section .btn:active {
-  transform: scale(0.95); /* Press effect */
+  transform: scale(0.95); /* Press effect *
 }
 
-/* Responsive Button Styling */
+/* Responsive Button Styling *
 @media screen and (max-width: 768px) {
   .hero-section .btn {
       font-size: 16px;
@@ -67,3 +68,4 @@
 .about-section{
   text-align: center;
 }
+  */

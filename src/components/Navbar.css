@@ -1,4 +1,4 @@
-/* Navbar Container */
+/* Navbar Container 
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -8,12 +8,12 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
+/* Logo 
 .navbar-logo img {
   height: 50px;
 }
 
-/* Navigation Links */
+/* Navigation Links 
 .navbar-links {
   list-style: none;
   display: flex;
@@ -21,11 +21,11 @@
 }
 .navbar-links {
   position: absolute;
-  top: 60px; /* Adjust based on your layout */
+  top: 60px; /* Adjust based on your layout 
   left:0;
   width: 100%;
-  background: white; /* Or your preferred background color */
-  z-index: 1000; /* Ensure it's higher than the hero section */
+  background: white; /* Or your preferred background color *
+  z-index: 1000; /* Ensure it's higher than the hero section *
 }
 
 .navbar-links li {
@@ -39,14 +39,14 @@
   font-size: 18px;
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu *
 .menu-toggle {
   display: none;
   font-size: 30px;
   cursor: pointer;
 }
 
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles *
 @media screen and (max-width: 768px) {
   .navbar-links {
       display: none;
@@ -67,3 +67,4 @@
       display: block;
   }
 }
+  */

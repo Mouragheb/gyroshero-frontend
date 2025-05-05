@@ -1,6 +1,6 @@
-/* Footer Styles */
+/* Footer Styles 
 .footer {
-  background-color: #fac31b; /* Match primary color */
+  background-color: #fac31b; 
   color: white;
   text-align: center;
   padding: 20px 0;
@@ -11,14 +11,14 @@
   align-items: center;
 }
 
-/* Logo Styling */
+
 .footer-logo {
-  width: 100px; /* Adjust size as needed */
+  width: 100px; 
   height: auto;
   margin-bottom: 10px;
 }
 
-/* Footer Links */
+
 .footer-links {
   margin-top: 10px;
 }
@@ -32,5 +32,6 @@
 }
 
 .footer-links a:hover {
-  color: #ffccbc; /* Light red for hover effect */
+  color: #ffccbc; 
 }
+*/
