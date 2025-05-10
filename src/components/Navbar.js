@@ -70,7 +70,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/blog"
-                className={`transition ${isActive("/about") ? "text-white underline" : "hover:text-white"
+                className={`transition ${isActive("/blog") ? "text-white underline" : "hover:text-white"
                   }`}
               >
                 Blog
@@ -82,7 +82,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {menuOpen && (
           <ul className="md:hidden flex flex-col space-y-4 pb-4 text-sm font-semibold">
-            {["/", "/menu", "/contact", "/about"].map((path) => (
+            {["/", "/menu", "/contact", "/about", "/blog"].map((path) => (
               <li key={path}>
                 <Link
                   to={path}
