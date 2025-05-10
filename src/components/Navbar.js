@@ -34,9 +34,8 @@ const Navbar = () => {
             <li>
               <Link
                 to="/"
-                className={`transition ${
-                  isActive("/") ? "text-white underline" : "hover:text-white"
-                }`}
+                className={`transition ${isActive("/") ? "text-white underline" : "hover:text-white"
+                  }`}
               >
                 Home
               </Link>
@@ -44,9 +43,8 @@ const Navbar = () => {
             <li>
               <Link
                 to="/menu"
-                className={`transition ${
-                  isActive("/menu") ? "text-white underline" : "hover:text-white"
-                }`}
+                className={`transition ${isActive("/menu") ? "text-white underline" : "hover:text-white"
+                  }`}
               >
                 Menu
               </Link>
@@ -54,9 +52,8 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className={`transition ${
-                  isActive("/contact") ? "text-white underline" : "hover:text-white"
-                }`}
+                className={`transition ${isActive("/contact") ? "text-white underline" : "hover:text-white"
+                  }`}
               >
                 Contact
               </Link>
@@ -64,11 +61,19 @@ const Navbar = () => {
             <li>
               <Link
                 to="/about"
-                className={`transition ${
-                  isActive("/about") ? "text-white underline" : "hover:text-white"
-                }`}
+                className={`transition ${isActive("/about") ? "text-white underline" : "hover:text-white"
+                  }`}
               >
                 About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog"
+                className={`transition ${isActive("/about") ? "text-white underline" : "hover:text-white"
+                  }`}
+              >
+                Blog
               </Link>
             </li>
           </ul>
@@ -82,9 +87,8 @@ const Navbar = () => {
                 <Link
                   to={path}
                   onClick={() => setMenuOpen(false)}
-                  className={`transition ${
-                    isActive(path) ? "text-white underline" : "hover:text-white"
-                  }`}
+                  className={`transition ${isActive(path) ? "text-white underline" : "hover:text-white"
+                    }`}
                 >
                   {path === "/" ? "Home" : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
                 </Link>

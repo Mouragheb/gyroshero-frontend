@@ -25,7 +25,7 @@ const Menu = () => {
         Our Menu
       </h1>
       <p className="text-lg md:text-xl text-center font-medium text-gray-800 mb-6">
-            Make sure to use PromoCode: <strong className="text-3xl text-red-900">GH20 for a 20% off</strong> all you purchase.
+        Make sure to use PromoCode: <strong className="text-3xl text-red-900">GH20 for a 20% off</strong> all you purchase.
       </p>
 
       {Object.keys(categorizedItems).map((category) => (
@@ -41,7 +41,9 @@ const Menu = () => {
               >
                 <img
                   src={`https://gyroshero-backend.onrender.com${item.image_url}`}
-                  alt={item.name}
+                  alt={`${item.name} at Gyros Hero – Halal Mediterranean food in Houston`}
+                  loading="lazy"
+                  onError={(e) => { e.target.src = "/images/fallback.jpg" }}
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />
                 <h3 className="text-lg font-bold text-gray-800 mb-1">

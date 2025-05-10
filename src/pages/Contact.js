@@ -44,7 +44,7 @@ const Contact = () => {
 
         <div className="text-gray-700 mb-10 space-y-2">
           <p><strong>Address:</strong> 8730 Westheimer Rd, Houston, Texas 77063</p>
-          <p><strong>Phone:</strong> <a href="tel:+13465657012" className="text-red-900 hover:underline">(346) 565-7012</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+13465657012" className="text-red-900 hover:underline">(346) 303-5201</a></p>
           <p><strong>Email:</strong> <a href="mailto:gyrosherotx@gmail.com" className="text-red-900 hover:underline">gyrosherotx@gmail.com</a></p>
         </div>
 
