@@ -47,7 +47,7 @@ const Home = () => {
         </div>
 
         {/* Hidden Background Audio */}
-        <audio ref={audioRef} loop>
+        <audio ref={audioRef} loop muted>
           <source src="/audio/gh-anthem1.mp3" type="audio/mp3" />
         </audio>
       </header>
