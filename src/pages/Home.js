@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import HappyHourBanner from "../components/HappyHourBanner";
 
 const Home = () => {
   const audioRef = useRef(null);
@@ -35,9 +36,12 @@ const Home = () => {
           <p className="text-lg md:text-xl font-medium text-gray-800 mb-6">
             Authentic Mediterranean flavors made with passion.
           </p>
-          <p className="text-lg md:text-xl text-center font-medium text-gray-800 mb-6">
-            Make sure to use PromoCode: <strong className="text-3xl text-red-900">GH20 for a 20% off</strong> all you purchase.
-          </p>
+
+          {/* Happy Hour Countdown Button */}
+          <div className="mb-6 flex justify-center">
+            <HappyHourBanner />
+          </div>
+
           <Link
             to="/menu"
             className="bg-[#FAC31B] hover:bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg transition duration-300"

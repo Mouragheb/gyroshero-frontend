@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import HappyHourBanner from "../components/HappyHourBanner";
 const Menu = () => {
   const [categorizedItems, setCategorizedItems] = useState({});
 
@@ -20,13 +20,16 @@ const Menu = () => {
   }, []);
 
   return (
+    <>
+    
     <div className="bg-white min-h-screen px-4 md:px-8 lg:px-16 py-12">
       <h1 className="text-4xl font-bold text-center mb-10 text-gray-900">
         Our Menu
       </h1>
-      <p className="text-lg md:text-xl text-center font-medium text-gray-800 mb-6">
-        Make sure to use PromoCode: <strong className="text-3xl text-red-900">GH20 for a 20% off</strong> all you purchase.
-      </p>
+      {/* Happy Hour Countdown Button */}
+    <div className="mb-6 flex justify-center">
+            <HappyHourBanner />
+          </div>
 
       {Object.keys(categorizedItems).map((category) => (
         <div key={category} className="mb-16">
@@ -66,6 +69,7 @@ const Menu = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 
