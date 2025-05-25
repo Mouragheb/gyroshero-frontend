@@ -5,7 +5,7 @@ const happyHourItems = [
   {
     name: "Gyro Wrap Meal with Fries",
     link: "https://www.gyroshero.com/product/gyro-wrap-meal-with-fries-happy-hour-/97?cs=true&cst=custom",
-    image: "/images/gyro-wrap.jpeg", // Replace with your actual image paths
+    image: "/images/gyro-wrap.jpeg", 
   },
   {
     name: "Hero Combo",
@@ -102,7 +102,8 @@ const HappyHour = () => {
 
   return (
     <div className="min-h-screen bg-white px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-10">Happy Hour Specials</h1>
+      <h1 className="text-4xl font-bold text-center mb-10"><strong>Happy Hour Specials</strong></h1>
+      <h1 className="text-3xl font-bold text-center mb-10">Any Meal in This Menu is For <strong className="text-red-900">$8.99 </strong></h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {happyHourItems.map((item, index) => (
           <div

@@ -72,9 +72,9 @@ const HappyHourBanner = () => {
     <div className="flex flex-col items-center text-center gap-2">
   <div className="bg-[#FAC31B] px-4 py-2 rounded-md text-black font-semibold text-lg shadow-md">
     {isHappyHour ? (
-      <span className="text-xl animate-pulse">
-        🎉 Happy Hour is LIVE! 🎉
-        <p>$8.99 Meals</p>
+      <span className="text-2xl animate-pulse">
+       <strong>🎉 Happy Hour is LIVE! 🎉</strong> 
+        <p className="text-red-900"><strong>$8.99 Meals</strong></p>
         <p>Lunch: 11AM-3PM</p>
         <p>Dinner: 8PM-10:30PM</p>
       </span>
@@ -82,9 +82,9 @@ const HappyHourBanner = () => {
     ) : (
       <>
         <span className="inline-block animate-bounce">⏳</span>{" "}
-        Happy Hour Starts in:{" "}
+        <strong className="text-2xl">Happy Hour Starts in:</strong>{" "}
         <span className="text-red-600 font-mono">{countdown}</span>
-        <p>$8.99 Meals</p>
+        <p className="text-red-900"><strong>$8.99 Meals</strong></p>
         <p>Lunch: 11AM-3PM</p>
         <p>Dinner: 8PM-10:30PM</p>
       </>
@@ -102,8 +102,6 @@ const HappyHourBanner = () => {
     Shop Happy Hour
   </button>
   </div>
-
-  
 </div>
   );
 };
