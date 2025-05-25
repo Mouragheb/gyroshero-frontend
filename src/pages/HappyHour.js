@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const happyHourItems = [
-  {
-    name: "Gyro Wrap Meal with Fries",
-    link: "https://www.gyroshero.com/product/gyro-wrap-meal-with-fries-happy-hour-/97?cs=true&cst=custom",
-    image: "/images/gyro-wrap.jpeg", 
-  },
+  
   {
     name: "Hero Combo",
     link: "https://www.gyroshero.com/product/hero-combo-happy-hour-/93?cs=true&cst=custom",
@@ -21,6 +17,32 @@ const happyHourItems = [
     name: "NYC Chicken Over Rice",
     link: "https://www.gyroshero.com/product/nyc-chicken-over-rice-happy-hour-/94?cs=true&cst=custom",
     image: "/images/nyc-chicken.jpeg",
+  },
+  
+  {
+    name: "Falafel Special",
+    link: "https://www.gyroshero.com/product/falafel-special-meal-vegan-happy-hour-/92?cs=true&cst=custom",
+    image: "/images/falafel-special.jpeg",
+  },
+  {
+    name: "Gyro Wrap Meal with Fries",
+    link: "https://www.gyroshero.com/product/gyro-wrap-meal-with-fries-happy-hour-/97?cs=true&cst=custom",
+    image: "/images/gyro-wrap.jpeg", 
+  },
+  {
+    name: "Chicken Panini Meal with Fries",
+    link: "https://www.gyroshero.com/product/chicken-panini-meal-with-fries-happy-hour-/99?cs=true&cst=custom",
+    image: "/images/chicken-panini.jpg",
+  },
+  {
+    name: "3 Pcs Tenders and Fries",
+    link: "https://www.gyroshero.com/product/3-pcs-of-tenders-meal-with-fries-happy-hour-/100?cs=true&cst=custom",
+    image: "/images/tenders.jpeg",
+  },
+  {
+    name: "5 Pcs Wings and Fries",
+    link: "https://www.gyroshero.com/product/5-pcs-wings-meal-with-fries-happy-hour-/101?cs=true&cst=custom",
+    image: "/images/wings.jpeg", 
   },
 ];
 
