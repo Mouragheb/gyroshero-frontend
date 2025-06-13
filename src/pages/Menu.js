@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HappyHourBanner from "../components/HappyHourBanner";
+
 const Menu = () => {
   const [categorizedItems, setCategorizedItems] = useState({});
 

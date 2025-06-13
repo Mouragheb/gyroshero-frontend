@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import HappyHourBanner from "../components/HappyHourBanner";
+
 
 const Home = () => {
   const audioRef = useRef(null);
