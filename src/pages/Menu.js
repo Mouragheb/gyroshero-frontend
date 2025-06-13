@@ -21,54 +21,55 @@ const Menu = () => {
 
   return (
     <>
-    
-    <div className="bg-white min-h-screen px-4 md:px-8 lg:px-16 py-12">
-      <h1 className="text-4xl font-bold text-center mb-10 text-gray-900">
-        Our Menu
-      </h1>
-      {/* Happy Hour Countdown Button */}
-    <div className="mb-6 flex justify-center">
-            <HappyHourBanner />
-          </div>
 
-      {Object.keys(categorizedItems).map((category) => (
-        <div key={category} className="mb-16">
-          <h2 className="text-2xl font-semibold text-[#FAC31B] mb-6 uppercase border-b-2 border-[#FAC31B] pb-2">
-            {category}
-          </h2>
-          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {categorizedItems[category].map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col items-center text-center p-5"
-              >
-                <img
-                  src={`https://gyroshero-backend.onrender.com${item.image_url}`}
-                  alt={`${item.name} at Gyros Hero – Halal Mediterranean food in Houston`}
-                  loading="lazy"
-                  onError={(e) => { e.target.src = "/images/fallback.jpg" }}
-                  className="w-full h-48 object-cover rounded-md mb-4"
-                />
-                <h3 className="text-lg font-bold text-gray-800 mb-1">
-                  {item.name}
-                </h3>
-                <p className="text-sm text-gray-600 mb-2">
-                  ${item.price.toFixed(2)}
-                </p>
-                <a
-                  href={item.order_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto inline-block bg-[#FAC31B] hover:bg-yellow-400 text-black font-semibold px-4 py-2 rounded-full transition"
-                >
-                  Order Now
-                </a>
-              </div>
-            ))}
-          </div>
+      <div className="bg-white min-h-screen px-4 md:px-8 lg:px-16 py-12">
+        <h1 className="text-4xl font-bold text-center mb-10 text-gray-900">
+          Our Menu
+        </h1>
+        <div className="w-full h-fit rounded-xl shadow-md bg-[#FAC31B]">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide text-black text-center">
+            USE <strong className="text-red-900">GH20 </strong><strong className="text-blue-950">PROMOCODE </strong>FOR <strong className="text-red-900">20% OFF</strong> ENTIRE ONLINE PRCHASE
+          </h1>
         </div>
-      ))}
-    </div>
+
+        {Object.keys(categorizedItems).map((category) => (
+          <div key={category} className="mb-16">
+            <h2 className="text-2xl font-semibold text-[#FAC31B] mb-6 uppercase border-b-2 border-[#FAC31B] pb-2">
+              {category}
+            </h2>
+            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {categorizedItems[category].map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col items-center text-center p-5"
+                >
+                  <img
+                    src={`https://gyroshero-backend.onrender.com${item.image_url}`}
+                    alt={`${item.name} at Gyros Hero – Halal Mediterranean food in Houston`}
+                    loading="lazy"
+                    onError={(e) => { e.target.src = "/images/fallback.jpg" }}
+                    className="w-full h-48 object-cover rounded-md mb-4"
+                  />
+                  <h3 className="text-lg font-bold text-gray-800 mb-1">
+                    {item.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">
+                    ${item.price.toFixed(2)}
+                  </p>
+                  <a
+                    href={item.order_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto inline-block bg-[#FAC31B] hover:bg-yellow-400 text-black font-semibold px-4 py-2 rounded-full transition"
+                  >
+                    Order Now
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 };

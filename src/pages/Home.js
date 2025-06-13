@@ -37,10 +37,9 @@ const Home = () => {
             Authentic Mediterranean flavors made with passion.
           </p>
 
-          {/* Happy Hour Countdown Button */}
-          <div className="mb-6 flex justify-center">
-            <HappyHourBanner />
-          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide text-black">
+            USE <strong className="text-red-900">GH20 </strong><strong className="text-blue-950">PROMOCODE </strong>FOR <strong className="text-red-900">20% OFF</strong> ENTIRE ONLINE PRCHASE 
+          </h1>
 
           <Link
             to="/menu"

@@ -11,6 +11,10 @@ import HappyHour from "./pages/HappyHour";
 
 
 
+
+
+
+
 function App() {
   return (
       <div>
@@ -22,6 +26,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/happy-hour" element={<HappyHour />} />
+              
           </Routes>
           <Footer />
       </div>
