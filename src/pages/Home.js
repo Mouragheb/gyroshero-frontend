@@ -28,7 +28,7 @@ function useAutoplayOnce(ref) {
   }, [ref]);
 }
 
-/* ---------- Mobile Reel: plays one after another ---------- */
+/* ---------- Mobile Reel ---------- */
 const MobileReel = () => {
   const [idx, setIdx] = useState(0);
   const videoRef = useRef(null);
@@ -44,7 +44,6 @@ const MobileReel = () => {
 
   const onEnded = () => setIdx((i) => (i + 1) % VIDEO_SOURCES.length);
 
-  // Swipe support
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
@@ -64,7 +63,7 @@ const MobileReel = () => {
   }, [videoRef]);
 
   return (
-    <div className="md:hidden px-4">
+    <div className="md:hidden px-4 mt-6">
       <div className="relative max-w-sm mx-auto">
         <div className="aspect-[9/16] w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5">
           <video
@@ -94,7 +93,7 @@ const MobileReel = () => {
   );
 };
 
-/* ---------- Desktop grid: all three at once ---------- */
+/* ---------- Desktop grid ---------- */
 const DesktopGrid = () => {
   const v1 = useRef(null);
   const v2 = useRef(null);
@@ -119,8 +118,9 @@ const DesktopGrid = () => {
   }, [v1, v2, v3]);
 
   return (
-    <div className="hidden md:block">
+    <div className="hidden md:block py-8 bg-gradient-to-b from-white to-yellow-50">
       <div className="max-w-6xl mx-auto px-6">
+        <h3 className="text-center text-3xl font-bold mb-8">Fresh Off the Grill</h3>
         <div className="grid md:grid-cols-3 gap-6">
           {VIDEO_SOURCES.map((src, i) => (
             <div
@@ -145,6 +145,7 @@ const DesktopGrid = () => {
   );
 };
 
+/* ---------- Home Page ---------- */
 const Home = () => {
   const audioRef = useRef(null);
 
@@ -167,7 +168,16 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Hero */}
+      {/* Reels on Top */}
+      <section className="bg-gradient-to-b from-yellow-50 to-white pt-6 pb-10">
+        <h3 className="text-center text-2xl md:text-3xl font-bold mb-6 md:hidden">
+          Fresh Off the Grill
+        </h3>
+        <MobileReel />
+        <DesktopGrid />
+      </section>
+
+      {/* Hero Section */}
       <header
         className="relative bg-cover bg-center h-[500px] flex flex-col items-center justify-center text-center px-4"
         style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
@@ -199,17 +209,12 @@ const Home = () => {
         </audio>
       </header>
 
-      {/* About */}
+      {/* About Section */}
       <section className="bg-white text-center py-16 px-4">
         <h2 className="text-3xl font-extrabold mb-4 text-gray-900">Gyros Hero</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">The Hero of All Gyros in H-Town!</p>
-      </section>
-
-      {/* Reels */}
-      <section className="py-8 md:py-16 bg-gradient-to-b from-white to-yellow-50">
-        <h3 className="text-center text-2xl md:text-3xl font-bold mb-8">Fresh Off the Grill</h3>
-        <MobileReel />
-        <DesktopGrid />
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          The Hero of All Gyros in H-Town!
+        </p>
       </section>
     </div>
   );
