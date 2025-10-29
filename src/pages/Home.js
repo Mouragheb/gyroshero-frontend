@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const VIDEO_SOURCES = ["/gyro5.mp4", "/gyro2.mp4", "/gyro3.mp4", "gyro4.mp4", "gyro1.mp4"];
+const VIDEO_SOURCES = ["/gyro5.mp4", "/gyro2.mp4", "/gyro3.mp4", "/gyro4.mp4", "/gyro1.mp4"];
 
 /* ----------------- helpers ----------------- */
 function useAutoplayOnce(ref) {
@@ -93,11 +93,9 @@ const MobileReel = () => {
   );
 };
 
-/* ---------- Desktop grid ---------- */
+/* ---------- Desktop grid (5 across on xl) ---------- */
 const DesktopGrid = () => {
-  const v1 = useRef(null);
-  const v2 = useRef(null);
-  const v3 = useRef(null);
+  const videoRefs = useRef([]); // array of <video> elements
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -111,24 +109,25 @@ const DesktopGrid = () => {
       { threshold: 0.25 }
     );
 
-    const els = [v1.current, v2.current, v3.current].filter(Boolean);
-    els.forEach((el) => observer.observe(el));
-
+    // observe all current videos
+    videoRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
-  }, [v1, v2, v3]);
+  }, []);
 
   return (
     <div className="hidden md:block py-8 bg-gradient-to-b from-white to-yellow-50">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6">
         <h3 className="text-center text-3xl font-bold mb-8">Fresh Off the Grill</h3>
-        <div className="grid md:grid-cols-3 gap-6">
+
+        {/* 3 cols (md), 4 cols (lg), 5 cols (xl) */}
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {VIDEO_SOURCES.map((src, i) => (
             <div
-              key={src}
+              key={src + i}
               className="group aspect-[9/16] overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 transform transition will-change-transform hover:-translate-y-1"
             >
               <video
-                ref={[v1, v2, v3][i]}
+                ref={(el) => (videoRefs.current[i] = el)}
                 src={src}
                 muted
                 playsInline
