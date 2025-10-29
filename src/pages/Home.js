@@ -40,11 +40,11 @@ const MobileReel = () => {
     v.src = VIDEO_SOURCES[idx];
     v.load();
     v.play().catch(() => {});
-  }, [idx]);
+  }, [idx, videoRef]);
 
   const onEnded = () => setIdx((i) => (i + 1) % VIDEO_SOURCES.length);
 
-  // Swipe support (no TS types)
+  // Swipe support
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
@@ -61,7 +61,7 @@ const MobileReel = () => {
       el.removeEventListener("touchstart", onTouchStart);
       el.removeEventListener("touchend", onTouchEnd);
     };
-  }, []);
+  }, [videoRef]);
 
   return (
     <div className="md:hidden px-4">
@@ -99,7 +99,6 @@ const DesktopGrid = () => {
   const v1 = useRef(null);
   const v2 = useRef(null);
   const v3 = useRef(null);
-  const refs = [v1, v2, v3];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -113,12 +112,11 @@ const DesktopGrid = () => {
       { threshold: 0.25 }
     );
 
-    refs.forEach((r) => {
-      if (r.current) observer.observe(r.current);
-    });
+    const els = [v1.current, v2.current, v3.current].filter(Boolean);
+    els.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [v1, v2, v3]);
 
   return (
     <div className="hidden md:block">
@@ -130,7 +128,7 @@ const DesktopGrid = () => {
               className="group aspect-[9/16] overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 transform transition will-change-transform hover:-translate-y-1"
             >
               <video
-                ref={refs[i]}
+                ref={[v1, v2, v3][i]}
                 src={src}
                 muted
                 playsInline
