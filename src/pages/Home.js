@@ -65,7 +65,9 @@ const MobileReel = () => {
   return (
     <div className="md:hidden px-4 mt-6">
       <div className="relative max-w-sm mx-auto">
-        <div className="aspect-[9/16] w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5">
+        <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5">
+          {/* Clickable overlay */}
+          <Link to="/menu" aria-label="Open menu" className="absolute inset-0 z-10" />
           <video
             key={idx}
             ref={videoRef}
@@ -74,7 +76,7 @@ const MobileReel = () => {
             autoPlay
             preload="metadata"
             onEnded={onEnded}
-            className="h-full w-full object-cover"
+            className="pointer-events-none h-full w-full object-cover"
           />
         </div>
 
@@ -93,39 +95,42 @@ const MobileReel = () => {
   );
 };
 
-/* ---------- Desktop grid (5 across on xl) ---------- */
+/* ---------- Desktop grid (edge-to-edge, 5 across on xl) ---------- */
 const DesktopGrid = () => {
-  const videoRefs = useRef([]); // array of <video> elements
+  const videoRefs = useRef([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const el = entry.target;
-          if (entry.isIntersecting && el && el.play) el.play().catch(() => {});
-          else if (el && el.pause) el.pause();
+          if (entry.isIntersecting && el?.play) el.play().catch(() => {});
+          else if (el?.pause) el.pause();
         });
       },
       { threshold: 0.25 }
     );
-
-    // observe all current videos
-    videoRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+    videoRefs.current.forEach((el) => el && obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
   return (
     <div className="hidden md:block py-8 bg-gradient-to-b from-white to-yellow-50">
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-6">
+      {/* Full-bleed wrapper (breaks out of centered layouts) */}
+      <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
         <h3 className="text-center text-3xl font-bold mb-8">Fresh Off the Grill</h3>
 
-        {/* 3 cols (md), 4 cols (lg), 5 cols (xl) */}
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {/* 3 cols (md), 4 cols (lg), 5 cols (xl+). No max-width, tiny side padding only on small screens */}
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 xl:gap-6 px-2 md:px-4">
           {VIDEO_SOURCES.map((src, i) => (
             <div
               key={src + i}
-              className="group aspect-[9/16] overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 transform transition will-change-transform hover:-translate-y-1"
+              className="group relative aspect-[9/16] overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 transform transition hover:-translate-y-1"
             >
+              {/* Make the whole card clickable */}
+              <Link to="/menu" aria-label="Open menu" className="absolute inset-0 z-10" />
+
+              {/* Video (pointer-events-none so clicks go to Link) */}
               <video
                 ref={(el) => (videoRefs.current[i] = el)}
                 src={src}
@@ -134,7 +139,7 @@ const DesktopGrid = () => {
                 autoPlay
                 loop
                 preload="metadata"
-                className="h-full w-full object-cover transition scale-105 group-hover:scale-110"
+                className="pointer-events-none h-full w-full object-cover transition scale-105 group-hover:scale-110"
               />
             </div>
           ))}
