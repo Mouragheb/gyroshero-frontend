@@ -8,19 +8,15 @@ function useAutoplayOnce(ref) {
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
-
     const tryPlay = () => v.play().catch(() => {});
     tryPlay();
-
     const onUserInteract = () => {
       tryPlay();
       document.removeEventListener("click", onUserInteract);
       document.removeEventListener("touchstart", onUserInteract);
     };
-
     document.addEventListener("click", onUserInteract);
     document.addEventListener("touchstart", onUserInteract);
-
     return () => {
       document.removeEventListener("click", onUserInteract);
       document.removeEventListener("touchstart", onUserInteract);
@@ -28,31 +24,77 @@ function useAutoplayOnce(ref) {
   }, [ref]);
 }
 
-/* ---------- Mobile Reel ---------- */
+/* ---------- Mobile Reel (smooth cross-fade) ---------- */
 const MobileReel = () => {
   const [idx, setIdx] = useState(0);
-  const videoRef = useRef(null);
-  useAutoplayOnce(videoRef);
+  const [active, setActive] = useState(0); // 0 = A is visible, 1 = B is visible
 
+  const aRef = useRef(null);
+  const bRef = useRef(null);
+  // keep the autoplay workaround on both elements
+  useAutoplayOnce(aRef);
+  useAutoplayOnce(bRef);
+
+  // init first video on mount
   useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.src = VIDEO_SOURCES[idx];
-    v.load();
-    v.play().catch(() => {});
-  }, [idx, videoRef]);
+    const vA = aRef.current;
+    if (!vA) return;
+    vA.src = VIDEO_SOURCES[0];
+    vA.load();
+    vA.play().catch(() => {});
+  }, []);
 
-  const onEnded = () => setIdx((i) => (i + 1) % VIDEO_SOURCES.length);
+  // helper to load/play a src on a given <video>
+  const loadAndPlay = (videoEl, src) => {
+    if (!videoEl) return;
+    videoEl.src = src;
+    videoEl.load();
+    // start muted inline immediately; if not ready it will play as soon as it can
+    videoEl.play().catch(() => {});
+  };
 
+  // crossfade to target index
+  const switchTo = (nextIdx) => {
+    if (nextIdx === idx) return;
+
+    const showB = active === 0;
+    const visibleEl = showB ? aRef.current : bRef.current;
+    const hiddenEl  = showB ? bRef.current : aRef.current;
+
+    // prepare hidden element with the next video, start playing ASAP
+    loadAndPlay(hiddenEl, VIDEO_SOURCES[nextIdx]);
+
+    // as soon as it can play, fade it in
+    const onCanPlay = () => {
+      // small rAF so opacity transition starts after layout
+      requestAnimationFrame(() => setActive(showB ? 1 : 0));
+    };
+    hiddenEl.addEventListener("canplay", onCanPlay, { once: true });
+
+    // safety: if 'canplay' never fires quickly, still fade after 150ms
+    const t = setTimeout(() => setActive(showB ? 1 : 0), 150);
+
+    // update index state and cleanup any stray timers/listeners on next switch
+    setIdx(nextIdx);
+
+    const cleanup = () => clearTimeout(t);
+    // return cleanup on next tick
+    setTimeout(cleanup, 0);
+  };
+
+  // auto-advance when the visible one ends
+  const onEnded = () => switchTo((idx + 1) % VIDEO_SOURCES.length);
+
+  // swipe support
   useEffect(() => {
-    const el = videoRef.current;
+    const el = active === 0 ? aRef.current : bRef.current;
     if (!el) return;
     let startX = 0;
     const onTouchStart = (e) => (startX = e.touches[0].clientX);
     const onTouchEnd = (e) => {
       const dx = e.changedTouches[0].clientX - startX;
-      if (dx > 40) setIdx((i) => (i - 1 + VIDEO_SOURCES.length) % VIDEO_SOURCES.length);
-      if (dx < -40) setIdx((i) => (i + 1) % VIDEO_SOURCES.length);
+      if (dx > 40) switchTo((idx - 1 + VIDEO_SOURCES.length) % VIDEO_SOURCES.length);
+      if (dx < -40) switchTo((idx + 1) % VIDEO_SOURCES.length);
     };
     el.addEventListener("touchstart", onTouchStart);
     el.addEventListener("touchend", onTouchEnd);
@@ -60,17 +102,19 @@ const MobileReel = () => {
       el.removeEventListener("touchstart", onTouchStart);
       el.removeEventListener("touchend", onTouchEnd);
     };
-  }, [videoRef]);
+    // re-bind when active/idx changes
+  }, [active, idx]);
 
   return (
     <div className="md:hidden px-4 mt-6">
       <div className="relative max-w-sm mx-auto">
         <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5">
           {/* Clickable overlay */}
-          <Link to="/menu" aria-label="Open menu" className="absolute inset-0 z-10" />
+          <Link to="/menu" aria-label="Open menu" className="absolute inset-0 z-20" />
+
+          {/* Video A */}
           <video
-            key={idx}
-            ref={videoRef}
+            ref={aRef}
             muted
             playsInline
             autoPlay
@@ -78,16 +122,34 @@ const MobileReel = () => {
             fetchpriority="high"
             decoding="async"
             onEnded={onEnded}
-            className="pointer-events-none h-full w-full object-cover"
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+              active === 0 ? "opacity-100" : "opacity-0"
+            }`}
+          />
+
+          {/* Video B */}
+          <video
+            ref={bRef}
+            muted
+            playsInline
+            autoPlay
+            preload="auto"
+            fetchpriority="high"
+            decoding="async"
+            onEnded={onEnded}
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+              active === 1 ? "opacity-100" : "opacity-0"
+            }`}
           />
         </div>
 
-        <div className="absolute -bottom-6 left-0 right-0 flex justify-center gap-2">
+        {/* Dots */}
+        <div className="absolute -bottom-6 left-0 right-0 flex justify-center gap-2 z-30">
           {VIDEO_SOURCES.map((_, i) => (
             <button
               key={i}
               aria-label={`Go to video ${i + 1}`}
-              onClick={() => setIdx(i)}
+              onClick={() => switchTo(i)}
               className={`h-2 w-2 rounded-full ${i === idx ? "bg-black/80" : "bg-black/30"}`}
             />
           ))}
@@ -131,8 +193,6 @@ const DesktopGrid = () => {
             >
               {/* Clickable overlay */}
               <Link to="/menu" aria-label="Open menu" className="absolute inset-0 z-10" />
-
-              {/* Video */}
               <video
                 ref={(el) => (videoRefs.current[i] = el)}
                 src={src}
@@ -176,8 +236,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      
-
       {/* Hero Section */}
       <header
         className="relative bg-cover bg-center h-[500px] flex flex-col items-center justify-center text-center px-4"
