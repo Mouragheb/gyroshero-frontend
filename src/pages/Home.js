@@ -176,14 +176,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Reels on Top */}
-      <section className="bg-gradient-to-b from-yellow-50 to-white pt-6 pb-10">
-        <h3 className="text-center text-2xl md:text-3xl font-bold mb-6 md:hidden">
-          Fresh Off the Grill
-        </h3>
-        <MobileReel />
-        <DesktopGrid />
-      </section>
+      
 
       {/* Hero Section */}
       <header
@@ -216,6 +209,15 @@ const Home = () => {
           <source src="/audio/gh-anthem1.mp3" type="audio/mp3" />
         </audio>
       </header>
+
+      {/* Reels on Top */}
+      <section className="bg-gradient-to-b from-yellow-50 to-white pt-6 pb-10">
+        <h3 className="text-center text-2xl md:text-3xl font-bold mb-6 md:hidden">
+          Fresh Off the Grill
+        </h3>
+        <MobileReel />
+        <DesktopGrid />
+      </section>
 
       {/* About Section */}
       <section className="bg-white text-center py-16 px-4">
