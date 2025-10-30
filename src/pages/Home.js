@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const VIDEO_SOURCES = ["/gyro3.mp4", "/gyro5.mp4", "/gyro2.mp4", "/gyro4.mp4", "/gyro1.mp4"];
@@ -27,15 +27,15 @@ function useAutoplayOnce(ref) {
 /* ---------- Mobile Reel (smooth cross-fade) ---------- */
 const MobileReel = () => {
   const [idx, setIdx] = useState(0);
-  const [active, setActive] = useState(0); // 0 = A is visible, 1 = B is visible
+  const [active, setActive] = useState(0); // 0 = A visible, 1 = B visible
 
   const aRef = useRef(null);
   const bRef = useRef(null);
-  // keep the autoplay workaround on both elements
+
   useAutoplayOnce(aRef);
   useAutoplayOnce(bRef);
 
-  // init first video on mount
+  // init first video
   useEffect(() => {
     const vA = aRef.current;
     if (!vA) return;
@@ -44,45 +44,37 @@ const MobileReel = () => {
     vA.play().catch(() => {});
   }, []);
 
-  // helper to load/play a src on a given <video>
   const loadAndPlay = (videoEl, src) => {
     if (!videoEl) return;
     videoEl.src = src;
     videoEl.load();
-    // start muted inline immediately; if not ready it will play as soon as it can
     videoEl.play().catch(() => {});
   };
 
-  // crossfade to target index
-  const switchTo = (nextIdx) => {
-    if (nextIdx === idx) return;
+  // wrap in useCallback so eslint is happy and listeners are stable
+  const switchTo = useCallback(
+    (nextIdx) => {
+      if (nextIdx === idx) return;
 
-    const showB = active === 0;
-    const visibleEl = showB ? aRef.current : bRef.current;
-    const hiddenEl  = showB ? bRef.current : aRef.current;
+      const showB = active === 0;
+      const hiddenEl = showB ? bRef.current : aRef.current;
 
-    // prepare hidden element with the next video, start playing ASAP
-    loadAndPlay(hiddenEl, VIDEO_SOURCES[nextIdx]);
+      // prepare hidden video
+      loadAndPlay(hiddenEl, VIDEO_SOURCES[nextIdx]);
 
-    // as soon as it can play, fade it in
-    const onCanPlay = () => {
-      // small rAF so opacity transition starts after layout
-      requestAnimationFrame(() => setActive(showB ? 1 : 0));
-    };
-    hiddenEl.addEventListener("canplay", onCanPlay, { once: true });
+      // fade in once ready (or after a short fallback)
+      const onCanPlay = () => requestAnimationFrame(() => setActive(showB ? 1 : 0));
+      hiddenEl && hiddenEl.addEventListener("canplay", onCanPlay, { once: true });
+      const t = setTimeout(() => setActive(showB ? 1 : 0), 150);
 
-    // safety: if 'canplay' never fires quickly, still fade after 150ms
-    const t = setTimeout(() => setActive(showB ? 1 : 0), 150);
+      setIdx(nextIdx);
 
-    // update index state and cleanup any stray timers/listeners on next switch
-    setIdx(nextIdx);
+      // cleanup fallback timer on next tick
+      setTimeout(() => clearTimeout(t), 0);
+    },
+    [active, idx]
+  );
 
-    const cleanup = () => clearTimeout(t);
-    // return cleanup on next tick
-    setTimeout(cleanup, 0);
-  };
-
-  // auto-advance when the visible one ends
   const onEnded = () => switchTo((idx + 1) % VIDEO_SOURCES.length);
 
   // swipe support
@@ -102,8 +94,7 @@ const MobileReel = () => {
       el.removeEventListener("touchstart", onTouchStart);
       el.removeEventListener("touchend", onTouchEnd);
     };
-    // re-bind when active/idx changes
-  }, [active, idx]);
+  }, [active, idx, switchTo]);
 
   return (
     <div className="md:hidden px-4 mt-6">
@@ -249,7 +240,7 @@ const Home = () => {
             Authentic Mediterranean flavors made with passion.
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
+        <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
             USE <strong className="text-red-900">GH20 </strong>
             <strong className="text-blue-950">PROMOCODE </strong>FOR{" "}
             <strong className="text-red-900">20% OFF</strong> ENTIRE ONLINE PURCHASE
