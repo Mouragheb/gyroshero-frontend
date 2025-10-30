@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const VIDEO_SOURCES = ["/gyro5.mp4", "/gyro3.mp4", "/gyro2.mp4", "/gyro4.mp4", "/gyro1.mp4"];
+const VIDEO_SOURCES = ["/gyro3.mp4", "/gyro5.mp4", "/gyro2.mp4", "/gyro4.mp4", "/gyro1.mp4"];
 
 /* ----------------- helpers ----------------- */
 function useAutoplayOnce(ref) {
