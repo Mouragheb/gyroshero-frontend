@@ -45,7 +45,7 @@ const Menu = () => {
 
         {/* Centered banner card */}
         <div className="absolute inset-0 flex items-center justify-center px-4">
-          <div className="bg-white/20 backdrop-blur-sm shadow-xl rounded-xl max-w-3xl w-full mx-auto py-6 md:py-8 px-5 md:px-8 ring-1 ring-black/10">
+          <div className="bg-white/5 backdrop-blur-sm shadow-xl rounded-xl max-w-3xl w-full mx-auto py-6 md:py-8 px-5 md:px-8 ring-1 ring-black/10">
             <h1 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900">
               Our Menu
             </h1>
