@@ -27,7 +27,7 @@ const Menu = () => {
       <section className="relative w-full">
         {/* Full-bleed video */}
         <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden">
-          <div className="relative h-[48vh] md:h-[60vh]">
+          <div className="relative h-[55vh] md:h-[70vh]">
             <video
               src="/gyro6.mp4"
               className="absolute inset-0 h-full w-full object-cover"
@@ -36,22 +36,22 @@ const Menu = () => {
               autoPlay
               loop
               preload="auto"
-              // poster="/images/menu-poster.jpg" // optional fallback frame
             />
-            {/* Subtle dark gradient so text stays readable */}
+            {/* Subtle dark gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30 pointer-events-none" />
           </div>
         </div>
 
         {/* Centered banner card */}
         <div className="absolute inset-0 flex items-center justify-center px-4">
-          <div className="bg-white/5 backdrop-blur-sm shadow-xl rounded-xl max-w-3xl w-full mx-auto py-6 md:py-8 px-5 md:px-8 ring-1 ring-black/10">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900">
+          <div className="bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl max-w-4xl w-full mx-auto py-10 md:py-14 px-6 md:px-12 ring-1 ring-black/10">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-center text-gray-900 mb-6 drop-shadow-sm">
               Our Menu
             </h1>
-            <p className="mt-4 text-lg md:text-xl font-semibold text-center text-gray-900">
-              USE <span className="text-red-900">GH20</span>{" "}
-              PROMOCODE FOR <span className="text-red-900">20% OFF</span> ENTIRE ONLINE PURCHASE
+            <p className="mt-2 text-2xl md:text-3xl font-semibold text-center text-gray-900 leading-snug">
+              USE <span className="text-red-900 font-bold">GH20</span>{" "}
+              PROMOCODE FOR{" "}
+              <span className="text-red-900 font-bold">20% OFF</span> ENTIRE ONLINE PURCHASE
             </p>
           </div>
         </div>
