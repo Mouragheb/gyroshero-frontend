@@ -252,14 +252,12 @@ const Home = () => {
             <img
               src="/specialcombo.png"
               alt="Gyros Hero Special Combo"
-              className="w-12 h-auto shadow-md"
+              className="w-24 h-auto shadow-md"
             />
           </div>
 
           <p className="text-slate-900 pb-2">
-            Your Wallet Is Tired… Let Us Feed You Right, Gas Prices Are Up… So Why Should Your Lunch Be Too.
-            Gyros Hero is the only Restaurant in Houston that offers a
-            $5.99 full plate… every single day. No other Purchases needed, No limited amount to order, No joke 😉
+            No other Purchases needed, No limited amount to order, No joke 😉
             No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!
           </p>
 
