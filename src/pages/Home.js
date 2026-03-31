@@ -8,7 +8,7 @@ function useAutoplayOnce(ref) {
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
-    const tryPlay = () => v.play().catch(() => {});
+    const tryPlay = () => v.play().catch(() => { });
     tryPlay();
     const onUserInteract = () => {
       tryPlay();
@@ -41,14 +41,14 @@ const MobileReel = () => {
     if (!vA) return;
     vA.src = VIDEO_SOURCES[0];
     vA.load();
-    vA.play().catch(() => {});
+    vA.play().catch(() => { });
   }, []);
 
   const loadAndPlay = (videoEl, src) => {
     if (!videoEl) return;
     videoEl.src = src;
     videoEl.load();
-    videoEl.play().catch(() => {});
+    videoEl.play().catch(() => { });
   };
 
   // wrap in useCallback so eslint is happy and listeners are stable
@@ -113,9 +113,8 @@ const MobileReel = () => {
             fetchpriority="high"
             decoding="async"
             onEnded={onEnded}
-            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-              active === 0 ? "opacity-100" : "opacity-0"
-            }`}
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${active === 0 ? "opacity-100" : "opacity-0"
+              }`}
           />
 
           {/* Video B */}
@@ -128,9 +127,8 @@ const MobileReel = () => {
             fetchpriority="high"
             decoding="async"
             onEnded={onEnded}
-            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-              active === 1 ? "opacity-100" : "opacity-0"
-            }`}
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${active === 1 ? "opacity-100" : "opacity-0"
+              }`}
           />
         </div>
 
@@ -159,7 +157,7 @@ const DesktopGrid = () => {
       (entries) => {
         entries.forEach((entry) => {
           const el = entry.target;
-          if (entry.isIntersecting && el?.play) el.play().catch(() => {});
+          if (entry.isIntersecting && el?.play) el.play().catch(() => { });
           else if (el?.pause) el.pause();
         });
       },
@@ -214,7 +212,7 @@ const Home = () => {
     audio.volume = 0.05;
 
     const playAudio = () => {
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
       document.removeEventListener("click", playAudio);
       document.removeEventListener("touchstart", playAudio);
     };
@@ -240,11 +238,17 @@ const Home = () => {
             Authentic Mediterranean flavors made with passion.
           </p>
 
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
-            USE <strong className="text-red-900">GH20 </strong>
-            <strong className="text-blue-950">PROMOCODE </strong>FOR{" "}
-            <strong className="text-red-900">20% OFF</strong> ENTIRE ONLINE PURCHASE
+          <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
+            <strong className="text-red-900">Crazy Everyday
+              Special  </strong>
+            <strong className="text-blue-950">BEEF / CHICKEN / Hero COMBO ​GYRO OVER RICE & SALAD
+              FOR ONLY  </strong>
+            <strong className="text-red-900">$5.99</strong>
           </h2>
+          <p className="text-slate-300">Your Wallet Is Tired… Let Us Feed You Right, Gas Prices Are Up… So Why Should Your Lunch Be Too.
+            Gyros Hero is the only Restaurant in Houston that offers a
+            $5.99 full plate… every single day. No other Purchases needed, No limited amount to order, No joke 😉
+            No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!</p>
 
           <Link
             to="/menu"

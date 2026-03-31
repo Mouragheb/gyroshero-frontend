@@ -48,11 +48,17 @@ const Menu = () => {
             <h1 className="text-5xl md:text-6xl font-extrabold text-center text-gray-900 mb-6 drop-shadow-sm">
               Our Menu
             </h1>
-            <p className="mt-2 text-2xl md:text-3xl font-semibold text-center text-gray-900 leading-snug">
-              USE <span className="text-red-900 font-bold">GH20</span>{" "}
-              PROMOCODE FOR{" "}
-              <span className="text-red-900 font-bold">20% OFF</span> ENTIRE ONLINE PURCHASE
-            </p>
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
+            <strong className="text-red-900">Crazy Everyday
+              Special  </strong>
+            <strong className="text-blue-950">BEEF / CHICKEN / Hero COMBO ​GYRO OVER RICE & SALAD
+              FOR ONLY  </strong>
+            <strong className="text-red-900">$5.99</strong>
+          </h2>
+          <p className="text-slate-300">Your Wallet Is Tired… Let Us Feed You Right, Gas Prices Are Up… So Why Should Your Lunch Be Too.
+            Gyros Hero is the only Restaurant in Houston that offers a
+            $5.99 full plate… every single day. No other Purchases needed, No limited amount to order, No joke 😉
+            No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!</p>
           </div>
         </div>
       </section>
