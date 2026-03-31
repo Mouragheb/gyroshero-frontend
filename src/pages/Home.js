@@ -239,7 +239,7 @@ const Home = () => {
             Authentic Mediterranean flavors made with passion.
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
+          <h2 className="text-lg md:text-3xl font-extrabold mb-4 tracking-wide text-black">
             <strong className="text-red-900">Crazy Everyday Special </strong>
             <strong className="text-blue-950">
               BEEF / CHICKEN / HERO COMBO ​GYRO OVER RICE & SALAD FOR ONLY
