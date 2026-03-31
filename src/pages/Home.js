@@ -234,21 +234,34 @@ const Home = () => {
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide text-black">
             Welcome to Gyros Hero
           </h1>
+
           <p className="text-lg md:text-xl font-medium text-gray-800 mb-6">
             Authentic Mediterranean flavors made with passion.
           </p>
 
           <h2 className="text-2xl md:text-3xl font-extrabold mb-4 tracking-wide text-black">
-            <strong className="text-red-900">Crazy Everyday
-              Special  </strong>
-            <strong className="text-blue-950">BEEF / CHICKEN / HERO COMBO ​GYRO OVER RICE & SALAD
-              FOR ONLY  </strong>
-            <strong className="text-red-900">$5.99</strong>
+            <strong className="text-red-900">Crazy Everyday Special </strong>
+            <strong className="text-blue-950">
+              BEEF / CHICKEN / HERO COMBO ​GYRO OVER RICE & SALAD FOR ONLY
+            </strong>
+            <strong className="text-red-900"> $5.99</strong>
           </h2>
-          <p className="text-slate-900">Your Wallet Is Tired… Let Us Feed You Right, Gas Prices Are Up… So Why Should Your Lunch Be Too.
+
+          {/* 👇 Centered Image */}
+          <div className="flex justify-center mb-4">
+            <img
+              src="/specialcombo.png"
+              alt="Gyros Hero Special Combo"
+              className="w-full max-w-md rounded-lg shadow-md"
+            />
+          </div>
+
+          <p className="text-slate-900 pb-2">
+            Your Wallet Is Tired… Let Us Feed You Right, Gas Prices Are Up… So Why Should Your Lunch Be Too.
             Gyros Hero is the only Restaurant in Houston that offers a
             $5.99 full plate… every single day. No other Purchases needed, No limited amount to order, No joke 😉
-            No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!</p>
+            No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!
+          </p>
 
           <Link
             to="/menu"
