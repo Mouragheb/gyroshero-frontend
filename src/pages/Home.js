@@ -252,7 +252,7 @@ const Home = () => {
             <img
               src="/specialcombo.png"
               alt="Gyros Hero Special Combo"
-              className="w-3 h-auto shadow-md"
+              className="w-12 h-auto shadow-md"
             />
           </div>
 
