@@ -62,6 +62,7 @@ const Menu = () => {
               className="w-32 h-auto"
             />
           </div>
+          </div>
         </div>
       </section>
 
