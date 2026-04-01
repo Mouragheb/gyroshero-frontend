@@ -55,10 +55,12 @@ const Menu = () => {
               FOR ONLY  </strong>
             <strong className="text-red-900">$5.99</strong>
           </h2>
-          <p className="text-slate-900">Your Wallet Is Tired… Let Us Feed You Right, Gas Prices Are Up… So Why Should Your Lunch Be Too.
-            Gyros Hero is the only Restaurant in Houston that offers a
-            $5.99 full plate… every single day. No other Purchases needed, No limited amount to order, No joke 😉
-            No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!</p>
+          <div className="flex justify-center mb-4">
+            <img
+              src="/specialcombo.png"
+              alt="Gyros Hero Special Combo"
+              className="w-32 h-auto"
+            />
           </div>
         </div>
       </section>

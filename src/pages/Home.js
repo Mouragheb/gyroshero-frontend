@@ -255,12 +255,6 @@ const Home = () => {
               className="w-32 h-auto"
             />
           </div>
-
-          <p className="text-slate-900 pb-2">
-            No other Purchases needed, No limited amount to order, No joke 😉
-            No Wonder we Are Called The Hidden Gem Of Houston Halal Food!!
-          </p>
-
           <Link
             to="/menu"
             className="bg-[#FAC31B] hover:bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg transition duration-300"
